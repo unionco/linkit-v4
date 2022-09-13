@@ -78,6 +78,9 @@ abstract class ElementLink extends Link
 
     public function getElement()
     {
+
+        $siteId = $this->siteId ?? $this->ownerElement->siteId ?? null;
+
         if ($this->_element !== null) {
             return $this->_element;
         }
@@ -93,7 +96,7 @@ abstract class ElementLink extends Link
             }
         }
 
-        return $this->_element = Craft::$app->getElements()->getElementById((int) $this->value, static::elementType(), $this->owner->siteId ?? null);
+        return $this->_element = Craft::$app->getElements()->getElementById((int) $this->value, static::elementType(), $siteId);
     }
 
     public function isAvailable(): bool
