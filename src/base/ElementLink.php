@@ -85,8 +85,6 @@ abstract class ElementLink extends Link implements \Stringable
         if ($this->_element !== null) {
             return $this->_element;
         }
-        
-        $siteId = $this->siteId ?? $this->ownerElement->siteId ?? null;
 
         // Check eager loading
         if ($this->owner) {
@@ -99,7 +97,7 @@ abstract class ElementLink extends Link implements \Stringable
             }
         }
 
-        return $this->_element = Craft::$app->getElements()->getElementById((int) $this->value, static::elementType(), $siteId);
+        return $this->_element = Craft::$app->getElements()->getElementById((int) $this->value, static::elementType(), '*');
     }
 
     public function isAvailable(): bool
